@@ -1,9 +1,16 @@
-//User Profile
+// User Profile
 import React, { useState, useEffect } from "react";
 import { View, Text, Button, Alert } from "react-native";
 import { auth } from "../firebaseConfig";
 import { sendEmailVerification } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  query,
+  where,
+  getDocs,
+  collection,
+} from "firebase/firestore";
 import firestore from "../firebaseConfig";
 
 export default function UserProfile() {
@@ -13,9 +20,14 @@ export default function UserProfile() {
     const fetchUserData = async () => {
       const user = auth.currentUser;
       if (user) {
-        const userDoc = doc(firestore, "users", user.uid); // Use the firestore instance directly here
-        const userSnapshot = await getDoc(userDoc);
-        if (userSnapshot.exists()) {
+        // Query users collection by email
+        const usersCollection = collection(firestore, "users");
+        const q = query(usersCollection, where("email", "==", user.email));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+          // Assuming there's only one user with this email
+          const userSnapshot = querySnapshot.docs[0];
           setCurrentUser(userSnapshot.data());
         } else {
           console.log("No such document!");
