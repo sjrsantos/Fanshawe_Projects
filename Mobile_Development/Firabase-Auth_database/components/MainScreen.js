@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 import { signInWithEmail } from "../firebaseConfig";
-import { useNavigation, NavigationContainer } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function MainScreen() {
   const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ export default function MainScreen() {
   const onLogin = () => {
     signInWithEmail(email, password)
       .then((userCredential) => {
-        navigation.navigate("UserProfile", { user: userCredential.user });
+        navigation.navigate("UserProfile", { userId: userCredential.user.uid });
       })
       .catch((error) => alert(error.message));
   };

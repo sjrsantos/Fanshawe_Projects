@@ -1,10 +1,9 @@
 // App.js
 import React, { useEffect } from "react";
-import { useNavigation, NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import MainScreen from "./components/MainScreen";
 import RegisterUser from "./components/RegisterUser";
-import AuthHandler from "./components/AuthHandler";
 import { auth } from "./firebaseConfig";
 import { AuthProvider, useAuth } from "./AuthContext"; // Import the context
 import UserProfile from "./components/UserProfile";
@@ -45,11 +44,6 @@ function MainApp() {
           name="UserProfile"
           component={UserProfile}
           options={{ title: "User Profile" }}
-        />
-        <Stack.Screen
-          name="AuthHandler"
-          component={AuthHandler}
-          options={{ title: "Auth Handler", headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>
