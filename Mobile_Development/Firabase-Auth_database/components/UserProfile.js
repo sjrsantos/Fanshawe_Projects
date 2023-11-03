@@ -1,11 +1,11 @@
-// User Profile
+//UserProfile.js
 import React, { useState, useEffect } from "react";
 import { View, Text, Button, Alert } from "react-native";
 import { auth } from "../firebaseConfig";
 import { sendEmailVerification } from "firebase/auth";
 import {
   doc,
-  getDoc,
+  onSnapshot,
   query,
   where,
   getDocs,
@@ -15,18 +15,17 @@ import firestore from "../firebaseConfig";
 
 export default function UserProfile() {
   const [currentUser, setCurrentUser] = useState(null);
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    const fetchUserDataByEmail = async () => {
       const user = auth.currentUser;
       if (user) {
-        // Query users collection by email
         const usersCollection = collection(firestore, "users");
         const q = query(usersCollection, where("email", "==", user.email));
         const querySnapshot = await getDocs(q);
 
         if (!querySnapshot.empty) {
-          // Assuming there's only one user with this email
           const userSnapshot = querySnapshot.docs[0];
           setCurrentUser(userSnapshot.data());
         } else {
@@ -35,10 +34,24 @@ export default function UserProfile() {
       }
     };
 
-    fetchUserData();
+    fetchUserDataByEmail();
   }, []);
 
-  const userFirstName = currentUser?.firstName || "User";
+  useEffect(() => {
+    if (auth.currentUser) {
+      const userId = auth.currentUser.uid;
+      const unsubscribe = onSnapshot(
+        doc(firestore, `users/${userId}`),
+        (doc) => {
+          setUserData(doc.data());
+        }
+      );
+
+      return () => unsubscribe(); // Cleanup listener
+    }
+  }, []);
+
+  const userFirstName = userData?.firstName || currentUser?.firstName || "User";
 
   const handleSendEmailVerification = () => {
     const authUser = auth.currentUser;
@@ -58,12 +71,12 @@ export default function UserProfile() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Welcome, {userFirstName}!</Text>
-      {currentUser && !currentUser.emailVerified && (
+      {auth.currentUser && !auth.currentUser.emailVerified ? (
         <>
           <Text>Your email is not verified.</Text>
           <Button title="Verify Email" onPress={handleSendEmailVerification} />
         </>
-      )}
+      ) : null}
     </View>
   );
 }
