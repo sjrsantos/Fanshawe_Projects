@@ -1,0 +1,214 @@
+{
+  "books": [
+    {
+      "Book Title": "The Hunger Games",
+      "Category": "Dystopian",
+      "Description": "A dystopian novel by the American writer Suzanne Collins.",
+      "Rating": 4.3,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51Yx1qQZqgL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Fault in Our Stars",
+      "Category": "Young Adult Fiction",
+      "Description": "A novel by John Green. It is his fourth solo novel, and sixth novel overall.",
+      "Rating": 4.2,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Book Thief",
+      "Category": "Historical Fiction",
+      "Description": "A historical novel by Australian author Markus Zusak.",
+      "Rating": 4.3,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Giver",
+      "Category": "Dystopian",
+      "Description": "A 1993 American young adult dystopian novel by Lois Lowry.",
+      "Rating": 4.1,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Help",
+      "Category": "Historical Fiction",
+      "Description": "A novel by American author Kathryn Stockett.",
+      "Rating": 4.2,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Outsiders",
+      "Category": "Coming-of-Age Fiction",
+      "Description": "A coming-of-age novel by S. E. Hinton, first published in 1967.",
+      "Rating": 4.1,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Lightning Thief",
+      "Category": "Fantasy",
+      "Description": "A 2005 fantasy-adventure novel based on Greek mythology.",
+      "Rating": 4.2,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Secret Life of Bees",
+      "Category": "Historical Fiction",
+      "Description": "A novel by Sue Monk Kidd that was first published in 2001.",
+      "Rating": 4.1,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "Looking for Alaska",
+      "Category": "Young Adult Fiction",
+      "Description": "A coming-of-age novel by John Green, published on March 3, 2005.",
+      "Rating": 4.1,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Perks of Being a Wallflower",
+      "Category": "Young Adult Fiction",
+      "Description": "A 1993 American young adult dystopian novel by Lois Lowry.",
+      "Rating": 4.2,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Great Gatsby",
+      "Category": "Classic Literature",
+      "Description": "A portrait of the Jazz Age in all of its decadence and excess, Gatsby captured the spirit of the author's generation.",
+      "Rating": 4.2,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "1984",
+      "Category": "Dystopian",
+      "Description": "A dystopian social science fiction novel and cautionary tale which is set in a totalitarian society.",
+      "Rating": 4.4,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "To Kill a Mockingbird",
+      "Category": "Classic American Literature",
+      "Description": "A novel of strong contemporary national significance.",
+      "Rating": 4.3,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "Pride and Prejudice",
+      "Category": "Romance",
+      "Description": "The novel follows the character development of Elizabeth Bennet, the dynamic protagonist of the book.",
+      "Rating": 4.5,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Catcher in the Rye",
+      "Category": "Coming-of-Age Fiction",
+      "Description": "The novel's protagonist Holden Caulfield has become an icon for teenage rebellion.",
+      "Rating": 3.9,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Hobbit",
+      "Category": "Fantasy",
+      "Description": "Children's fantasy novel by English author J. R. R. Tolkien.",
+      "Rating": 4.7,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Diary of a Young Girl",
+      "Category": "Biography",
+      "Description": "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family.",
+      "Rating": 4.3,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "Harry Potter and the Sorcerer's Stone",
+      "Category": "Fantasy",
+      "Description": "The first novel in the Harry Potter series and Rowling's debut novel.",
+      "Rating": 4.7,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Lord of the Rings",
+      "Category": "Epic Fantasy",
+      "Description": "An epic high-fantasy novel by English author and scholar J. R. R. Tolkien.",
+      "Rating": 4.9,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Alchemist",
+      "Category": "Adventure Fiction",
+      "Description": "An allegorical novel by Brazilian author Paulo Coelho that follows the journey of an Andalusian shepherd boy named Santiago.",
+      "Rating": 4.2,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Lion, the Witch and the Wardrobe",
+      "Category": "Fantasy",
+      "Description": "A fantasy novel for children by C. S. Lewis.",
+      "Rating": 4.4,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "Jane Eyre",
+      "Category": "Gothic Fiction",
+      "Description": "A novel by English writer Charlotte Brontë.",
+      "Rating": 4.1,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "Brave New World",
+      "Category": "Dystopian",
+      "Description": "A dystopian novel by English author Aldous Huxley.",
+      "Rating": 4.0,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "Animal Farm",
+      "Category": "Political Satire",
+      "Description": "An allegorical novella by George Orwell.",
+      "Rating": 3.8,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "A Tale of Two Cities",
+      "Category": "Historical Novel",
+      "Description": "A novel by Charles Dickens, set in London and Paris before and during the French Revolution.",
+      "Rating": 4.3,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Picture of Dorian Gray",
+      "Category": "Philosophical Fiction",
+      "Description": "A novel by Oscar Wilde that follows a young man named Dorian Gray.",
+      "Rating": 4.1,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Grapes of Wrath",
+      "Category": "Realist Novel",
+      "Description": "A realist novel by American author John Steinbeck.",
+      "Rating": 4.2,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Adventures of Huckleberry Finn",
+      "Category": "Picaresque Novel",
+      "Description": "A novel by Mark Twain, first published in the United Kingdom in December 1884.",
+      "Rating": 4.4,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "Lord of the Flies",
+      "Category": "Allegorical Novel",
+      "Description": "A novel by Nobel Prize–winning British author William Golding.",
+      "Rating": 3.9,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    },
+    {
+      "Book Title": "The Kite Runner",
+      "Category": "Historical Fiction",
+      "Description": "A novel by Afghan-American author Khaled Hosseini.",
+      "Rating": 4.3,
+      "Image URL": "https://images-na.ssl-images-amazon.com/images/I/51j5pK7Q7ZL._SX331_BO1,204,203,200_.jpg"
+    }
+  ]
+}
