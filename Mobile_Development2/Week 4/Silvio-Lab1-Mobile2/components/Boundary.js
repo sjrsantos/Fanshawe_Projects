@@ -1,4 +1,4 @@
-// Boundary.js
+// components/Boundary.js
 import Matter from "matter-js";
 import React from "react";
 import { View } from "react-native";
@@ -38,8 +38,6 @@ export const createBoundary = (world, color, pos, size) => {
   );
   Matter.World.add(world, boundary);
 
-  // add a console.log here to verify if the file is working:
-  // console.log("Boundary.js is working");
   return {
     body: boundary,
     color: color,

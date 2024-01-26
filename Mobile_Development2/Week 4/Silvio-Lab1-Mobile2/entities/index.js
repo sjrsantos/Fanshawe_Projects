@@ -1,53 +1,48 @@
-// index.js Purpose: index.js is a file that initializes the entities of the game. It creates the box, the boundary, and the player. It also creates the red margin boundaries.
+// entities/index.js
 import Matter from "matter-js";
-import { createBox, Box } from "../components/Box";
-import { createBoundary, Boundary } from "../components/Boundary";
+import { createBox } from "../components/Box";
+import { createBoundary } from "../components/Boundary";
 import { Constants } from "../Constants"; // Import Constants
 
 const engine = Matter.Engine.create({ enableSleeping: false });
 const { world } = engine;
+const redMarginWidth = 20;
 
 engine.gravity.y = 0.3;
 
 const initializeEntities = () => {
-  const boxWidth = 50;
-  const boxHeight = 50;
-  const boundaryWidth = 800;
-  const boundaryHeight = 20;
+  const engine = Matter.Engine.create({ enableSleeping: false });
+  const { world } = engine;
+  engine.gravity.y = 0.3;
 
-  const boxX = 100;
-  const boxY = 100;
-  const boundaryX = 400;
-  const boundaryY = 600;
-
-  const redMarginWidth = 20; // Adjust this value as needed
-  const redMarginColor = "red";
-
-  // Create red margin boundaries
+  // Create red margin boundaries using createBoundary function
   const topRedBoundary = createBoundary(
     world,
-    redMarginColor,
-    { x: Constants.SCREEN_WIDTH / 2, y: redMarginWidth / 2 },
-    { width: Constants.SCREEN_WIDTH, height: redMarginWidth }
+    "red",
+    { x: Constants.SCREEN_WIDTH / 2, y: 20 / 2 },
+    { width: Constants.SCREEN_WIDTH, height: 20 }
   );
+
   const bottomRedBoundary = createBoundary(
     world,
-    redMarginColor,
+    "red",
     {
       x: Constants.SCREEN_WIDTH / 2,
       y: Constants.SCREEN_HEIGHT - redMarginWidth * 1.5,
     },
     { width: Constants.SCREEN_WIDTH, height: redMarginWidth }
   );
+
   const leftRedBoundary = createBoundary(
     world,
-    redMarginColor,
+    "red",
     { x: redMarginWidth / 2, y: Constants.SCREEN_HEIGHT / 2 },
     { width: redMarginWidth, height: Constants.SCREEN_HEIGHT }
   );
+
   const rightRedBoundary = createBoundary(
     world,
-    redMarginColor,
+    "red",
     {
       x: Constants.SCREEN_WIDTH - redMarginWidth / 2,
       y: Constants.SCREEN_HEIGHT / 2,
@@ -55,28 +50,26 @@ const initializeEntities = () => {
     { width: redMarginWidth, height: Constants.SCREEN_HEIGHT }
   );
 
+  // Create box entities using createBox function
   const boxEntity = createBox(
     world,
     "green",
-    { x: boxX, y: boxY },
-    { width: boxWidth, height: boxHeight }
+    { x: 100, y: 100 },
+    { width: 50, height: 50 }
   );
 
-  // Create a movable player and add it to the world
+  // Set the initial position of the red box to the center of the screen
   const playerEntity = createBox(
     world,
-    "red", // Color of the player body
-    { x: Constants.SCREEN_WIDTH / 2, y: Constants.SCREEN_HEIGHT / 2 }, // Center of the screen
-    { width: 20, height: 20 } // Size of the player body
+    "red",
+    { x: Constants.SCREEN_WIDTH / 2, y: Constants.SCREEN_HEIGHT / 2 },
+    { width: 20, height: 20 }
   );
-
-  // console.log("Entities initialized");
 
   return {
     physics: { engine, world },
-    box: boxEntity,
-    player: playerEntity,
-    redBox: playerEntity,
+    box: { ...boxEntity, width: 50, height: 50 }, // Include width and height
+    redBox: { ...playerEntity, width: 20, height: 20 }, // Include width and height
     topRedBoundary: topRedBoundary,
     bottomRedBoundary: bottomRedBoundary,
     leftRedBoundary: leftRedBoundary,

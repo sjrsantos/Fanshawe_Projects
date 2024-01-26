@@ -1,4 +1,4 @@
-//Box.js
+// components/Box.js
 import React from "react";
 import { View } from "react-native";
 import Matter from "matter-js";
@@ -35,8 +35,6 @@ export const createBox = (world, color, pos, size) => {
 
   Matter.World.add(world, box);
 
-  // add a console.log here to verify if the file is working:
-  // console.log("Box.js is working");
   return {
     body: box,
     color: color,
