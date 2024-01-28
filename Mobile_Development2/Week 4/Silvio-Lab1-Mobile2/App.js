@@ -12,15 +12,36 @@ export default function App() {
   const [greenBoxDirection, setGreenBoxDirection] = useState("down");
   const entities = useRef(initializeEntities()); // Use useRef to store entities
 
+  console.log("Initial entities:", entities.current); // Add this line
+
   useEffect(() => {
     const animationInterval = setInterval(() => {
-      const boxEntity = entities.current.box; // Access entities using .current
-      const redBoxEntity = entities.current.redBox; // Access entities using .current
+      // Add debugging: Check if entities.current is defined
+      if (!entities.current) {
+        console.error("entities.current is undefined");
+        return;
+      }
 
-      // Check if boxEntity and redBoxEntity are defined
-      if (boxEntity && redBoxEntity) {
-        const boxBody = boxEntity.body;
-        // const redBoxBody = redBoxEntity.body;
+      const { box, player } = entities.current; // Destructure entities.current
+
+      // Check if box and player are defined
+      if (!box || !player) {
+        console.error("box or player is undefined");
+        return;
+      }
+
+      // Check if box and player are defined
+      if (box && player) {
+        const boxBody = box.body;
+        const greenBoxBody = player.body;
+
+        // // Log the values of box.body and player.body
+        // console.log("box.body:", boxBody);
+        // console.log("player.body:", greenBoxBody);
+
+        // // Log the values of box and player
+        // console.log("box:", box);
+        // console.log("player:", player);
 
         // Get the current position of the green box
         const { x, y } = boxBody.position;
@@ -64,13 +85,11 @@ export default function App() {
       }
     }, 1000 / 60); // 60 frames per second
 
+    // Log the value of entities.current
+    console.log("entities.current:", entities.current);
+
     return () => clearInterval(animationInterval);
   }, [greenBoxDirection]);
-
-  // Console logs are placed here, outside of the setInterval
-  console.log("entities:", entities);
-  console.log("boxEntity:", entities.current.box);
-  console.log("redBoxEntity:", entities.current.redBox);
 
   return (
     <View style={styles.container}>
@@ -84,13 +103,13 @@ export default function App() {
           style={{
             position: "absolute",
             left:
-              entities.current.box.body.position.x -
-              entities.current.box.width / 2,
+              entities.current.player.body.position.x -
+              entities.current.player.width / 2,
             top:
-              entities.current.box.body.position.y -
-              entities.current.box.height / 2,
-            width: entities.current.box.width,
-            height: entities.current.box.height,
+              entities.current.player.body.position.y -
+              entities.current.player.height / 2,
+            width: entities.current.player.width,
+            height: entities.current.player.height,
             backgroundColor: "green",
           }}
         />
@@ -98,15 +117,21 @@ export default function App() {
           style={{
             position: "absolute",
             left:
-              entities.current.redBox.body.position.x -
-              entities.current.redBox.width / 2,
+              entities.current.box.body.position.x -
+              entities.current.box.width / 2,
             top:
-              entities.current.redBox.body.position.y -
-              entities.current.redBox.height / 2,
-            width: entities.current.redBox.width,
-            height: entities.current.redBox.height,
+              entities.current.box.body.position.y -
+              entities.current.box.height / 2,
+            width: entities.current.box.width,
+            height: entities.current.box.height,
             backgroundColor: "red",
           }}
+        />
+        <View
+          topRedBoundary
+          bottomRedBoundary
+          leftRedBoundary
+          rightRedBoundary
         />
         <StatusBar style="auto" />
       </GameEngine>

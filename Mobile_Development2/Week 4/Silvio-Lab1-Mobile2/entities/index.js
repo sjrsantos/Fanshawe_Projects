@@ -50,26 +50,26 @@ const initializeEntities = () => {
     { width: redMarginWidth, height: Constants.SCREEN_HEIGHT }
   );
 
-  // Create box entities using createBox function
-  const boxEntity = createBox(
-    world,
-    "green",
-    { x: 100, y: 100 },
-    { width: 50, height: 50 }
-  );
-
-  // Set the initial position of the red box to the center of the screen
   const playerEntity = createBox(
     world,
-    "red",
+    "green", // Player should be green
+    { x: Constants.SCREEN_WIDTH / 2, y: Constants.SCREEN_HEIGHT / 2 },
+    { width: 50, height: 50 }
+  );
+  Matter.Body.setStatic(playerEntity.body, false); // Player is dynamic
+
+  const redBoxEntity = createBox(
+    world,
+    "red", // Central box should be red
     { x: Constants.SCREEN_WIDTH / 2, y: Constants.SCREEN_HEIGHT / 2 },
     { width: 20, height: 20 }
   );
+  Matter.Body.setStatic(redBoxEntity.body, true); // Central box is static
 
   return {
     physics: { engine, world },
-    box: { ...boxEntity, width: 50, height: 50 }, // Include width and height
-    redBox: { ...playerEntity, width: 20, height: 20 }, // Include width and height
+    player: { ...playerEntity, width: 50, height: 50 }, // Corrected name to player
+    box: { ...redBoxEntity, width: 20, height: 20 }, // Corrected name to box
     topRedBoundary: topRedBoundary,
     bottomRedBoundary: bottomRedBoundary,
     leftRedBoundary: leftRedBoundary,

@@ -2,7 +2,7 @@
 import Matter from "matter-js";
 
 const handleCollision = (entities) => {
-  let player = entities.box.body;
+  let player = entities.player.body; // Change to entities.player.body
   let bottomBoundary = entities.bottomRedBoundary.body;
   let topBoundary = entities.topRedBoundary.body;
   let leftBoundary = entities.leftRedBoundary.body;
@@ -13,6 +13,7 @@ const handleCollision = (entities) => {
 
     pairs.forEach((pair) => {
       if (pair.bodyA === player || pair.bodyB === player) {
+        console.log("Collision detected:", pair);
         // Collides with bottom boundary, move right
         if (pair.bodyA === bottomBoundary || pair.bodyB === bottomBoundary) {
           Matter.Body.setVelocity(player, { x: 10, y: 0 });
@@ -42,10 +43,14 @@ const Physics = (entities, { touches, time }) => {
       const dx = touch.delta.pageX;
       const dy = touch.delta.pageY;
 
-      Matter.Body.applyForce(entities.box.body, entities.box.body.position, {
-        x: dx * 0.05,
-        y: dy * 0.05,
-      });
+      Matter.Body.applyForce(
+        entities.player.body,
+        entities.player.body.position,
+        {
+          x: dx * 0.05,
+          y: dy * 0.05,
+        }
+      );
     }
   });
 
