@@ -13,8 +13,8 @@ export const setupWorld = () => {
 
   // Create the player (green box)
   const player = Matter.Bodies.rectangle(
-    boxSize / 2 + 20, // x position
-    boxSize / 2 + 20, // y position
+    boxSize / 2 + 60, // x position
+    boxSize / 2 + 60, // y position
     boxSize,
     boxSize,
     {
