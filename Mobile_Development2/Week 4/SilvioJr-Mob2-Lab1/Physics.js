@@ -19,7 +19,6 @@ const Physics = (entities, { touches, time }) => {
   touches
     .filter((t) => t.type === "press")
     .forEach((t) => {
-      // engine.world.gravity.y = 5; //gravity - fall
       Matter.Body.setVelocity(player, { x: 0, y: 5 });
     });
 
@@ -42,7 +41,7 @@ const Physics = (entities, { touches, time }) => {
             Matter.Body.setVelocity(player, { x: -5, y: 0 }); // Move left
             break;
           case "leftWall":
-            Matter.Body.setVelocity(player, { x: 0, y: 0 }); // Move down
+            Matter.Body.setVelocity(player, { x: 0, y: 0 }); // Stop
             break;
         }
       }
