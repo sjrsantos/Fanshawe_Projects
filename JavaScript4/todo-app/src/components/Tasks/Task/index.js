@@ -1,7 +1,8 @@
 export default function Task({
   id,
   title,
-  completed,
+  description,
+  status,
   onTaskComplete,
   onTaskRemove,
 }) {
@@ -17,7 +18,8 @@ export default function Task({
     <div>
       <h3>Title: {title}</h3>
       <p>Task ID: {id}</p>
-      <p>Status: {completed ? "Completed" : "Incomplete"}</p>
+      <p>Description: {description}</p>
+      <p>Status: {status}</p>
       <button onClick={handleTaskStatusClick}>Change Status</button>
       <button onClick={removeTask}>Remove</button>
       <hr></hr>
