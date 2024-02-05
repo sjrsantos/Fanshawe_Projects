@@ -72,6 +72,9 @@ const Physics = (entities, { touches, dispatch, events, time }) => {
         y: Math.floor(Math.random() * (300 - 0 + 1)) + 40, //Random Position
       });
       Sleeping.set(entities.RedSquare.body, true); //Player
+
+      let randomColor = generateRandomColor(); // Random Color
+      entities.RedSquare.color = randomColor; // Player
     }
     //Continue Playing after Player stopped
     Sleeping.set(entities.RedSquare.body, false); //Player
