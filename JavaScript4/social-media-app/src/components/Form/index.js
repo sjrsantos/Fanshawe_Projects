@@ -69,21 +69,17 @@ export default function Form({ onAddPost }) {
 
   return (
     <form className="form-component" onSubmit={handleFormSubmit}>
-      <hr />
-
       {/* Conditionally display the success message */}
       {showSuccessMessage && (
-        <>
-          <p>
-            <strong>Form successfully submitted!</strong>
-          </p>
-          <hr />
-        </>
+        <div className="success-message">
+          <h3>Success</h3>
+          <p>The post has been added</p>
+        </div>
       )}
 
       {/* Conditionally display the error message */}
       {errorMessages.length > 0 && (
-        <div>
+        <div className="form-validate">
           <h3>Errors</h3>
           <ul>
             {errorMessages.map((message) => (
@@ -135,7 +131,7 @@ export default function Form({ onAddPost }) {
         </label>
       </div>
       {/* Promote Field */}
-      <div>
+      <div className="promote-field">
         <label>
           Promote
           <input
@@ -147,7 +143,7 @@ export default function Form({ onAddPost }) {
       </div>
 
       {/* Status Field (Draft, Publish, Archive) */}
-      <div>
+      <div className="status-field">
         Status:
         {statuses.map((item) => (
           <label key={item.id}>

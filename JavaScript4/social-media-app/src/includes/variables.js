@@ -1,4 +1,4 @@
-export const appName = "Great App";
+export const appName = "The Great App";
 
 export const postStatus = ["Draft", "Published", "Archive"];
 

@@ -1,3 +1,5 @@
+import "./styles.scss";
+
 export default function Footer() {
-  return <footer>Copyright &copy; Silvio.</footer>;
+  return <footer className="main">Copyright &copy; Silvio.</footer>;
 }
