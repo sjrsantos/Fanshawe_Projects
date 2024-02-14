@@ -1,0 +1,50 @@
+@import "../../../styles/variables.scss";
+
+.post-item {
+  h3 {
+    font-size: 1.5rem;
+    margin: 10%;
+    padding: 0;
+    color: $primary;
+  }
+
+  .post-text {
+    font-size: 1.2rem;
+    margin: 5%;
+    padding: 0;
+    color: black;
+  }
+
+  button {
+    @include button-style;
+  }
+
+  .promote-yes,
+  .promote-no {
+    margin: 5%;
+    padding: 0;
+    color: white;
+    background-color: $primary;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    padding: 5px;
+
+    strong {
+      color: white;
+    }
+  }
+
+  .promote-yes {
+    background-color: green;
+  }
+
+  .promote-no {
+    background-color: darkred;
+  }
+
+  .too-many-dislikes {
+    color: fuchsia;
+    font-weight: bold;
+  }
+}

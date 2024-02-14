@@ -1,4 +1,7 @@
 import React, { useRef, useState } from "react";
+import { categories, statuses } from "../../includes/variables";
+import "./style.scss";
+
 export default function Form({ onAddPost }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -55,35 +58,6 @@ export default function Form({ onAddPost }) {
     }
   };
 
-  const categories = [
-    {
-      id: "edu",
-      name: "Education",
-    },
-    {
-      id: "ent",
-      name: "Entertainment",
-    },
-    {
-      id: "gam",
-      name: "Gaming",
-    },
-    {
-      id: "nws",
-      name: "News",
-    },
-    {
-      id: "oth",
-      name: "Other",
-    },
-  ];
-
-  const statuses = [
-    { id: "drf", text: "Draft" },
-    { id: "pub", text: "Publish" },
-    { id: "arc", text: "Archive" },
-  ];
-
   const handlePictureSelection = (event) => {
     const files = event.target.files[0];
     const fileReader = new FileReader();
@@ -94,7 +68,7 @@ export default function Form({ onAddPost }) {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form className="form-component" onSubmit={handleFormSubmit}>
       <hr />
 
       {/* Conditionally display the success message */}

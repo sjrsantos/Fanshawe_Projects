@@ -4,8 +4,8 @@ export default function Form({ onAddTask }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState(false);
-  const [errorMessages, setErrorMessages] = useState([]); // ["The title must be at least 5 characters long", "The content is required", "The category is required", "The status is required"
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // ["The title must be at least 5 characters long", "The content is required", "The category is required", "The status is required"
+  const [errorMessages, setErrorMessages] = useState([]); // The title must be at least 5 characters long
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleNewTask = (event) => {
     event.preventDefault();

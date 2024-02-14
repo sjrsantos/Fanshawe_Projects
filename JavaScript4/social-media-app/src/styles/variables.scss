@@ -1,0 +1,16 @@
+$primary: blue;
+
+@mixin button-style {
+  border: solid $primary 5px;
+  color: $primary;
+  font-weight: bold;
+  padding: 10px;
+  margin: 5px;
+
+  &:hover {
+    background-color: lightskyblue;
+    color: #000;
+
+    @content;
+  }
+}
