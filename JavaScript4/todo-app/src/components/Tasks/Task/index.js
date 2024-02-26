@@ -1,3 +1,7 @@
+import "./styles.scss";
+import { MdOutlinePlaylistRemove } from "react-icons/md";
+import { TbStatusChange } from "react-icons/tb";
+
 export default function Task({
   id,
   title,
@@ -15,14 +19,33 @@ export default function Task({
   };
 
   return (
-    <div>
-      <h3>Title: {title}</h3>
-      <p>Task ID: {id}</p>
-      <p>Description: {description}</p>
-      <p>Status: {status}</p>
-      <button onClick={handleTaskStatusClick}>Change Status</button>
-      <button onClick={removeTask}>Remove</button>
-      <hr></hr>
+    <div className="task-item">
+      <div className="info">
+        <div className="task-title">Title: {title}</div>
+
+        <div className="task-description">Description: {description}</div>
+        <div className="task-status">Status: {status}</div>
+        <div className="task-id">Task ID: {id}</div>
+      </div>
+
+      <div className="status">
+        <button
+          title="Change Status"
+          className="change-status"
+          onClick={handleTaskStatusClick}
+        >
+          <TbStatusChange />
+          Change Status
+        </button>
+        <button
+          title="Remove Task"
+          className="remove-task"
+          onClick={removeTask}
+        >
+          <MdOutlinePlaylistRemove />
+          Remove Task
+        </button>
+      </div>
     </div>
   );
 }

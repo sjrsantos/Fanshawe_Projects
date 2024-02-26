@@ -1,0 +1,103 @@
+@import "../../../styles/variables.scss";
+
+.task-item {
+  border: solid 1px $border-color;
+  background-color: $background-color;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+
+  .info {
+    display: flex;
+    flex-wrap: wrap;
+
+    div {
+      font-size: 0.8rem;
+      color: $gray-color;
+      margin: 1.5rem 1.5rem 0 0;
+
+      strong {
+        display: block;
+        color: $secondary-color;
+        font-size: 1rem;
+      }
+    }
+    .task-title {
+      font-size: 28px;
+      font-family: $title-font;
+      color: $primary-color;
+    }
+
+    .task-description {
+      font-size: 16px;
+    }
+
+    .task-status {
+      font-size: 16px;
+    }
+
+    .task-title,
+    .task-description,
+    .task-status,
+    .task-id {
+      margin: 0 0 1rem 0;
+      font-weight: normal;
+    }
+
+    .task-description,
+    .task-status,
+    .task-id {
+      font-family: $body-font;
+      display: flex;
+    }
+
+    .task-description,
+    .task-status {
+      color: $text-color;
+    }
+
+    .task-id {
+      font-size: 10px;
+      color: $gray-color;
+    }
+  }
+
+  .status {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+
+    button {
+      border: none;
+      font-size: 0.9rem;
+      color: $secondary-color;
+      display: flex;
+      align-items: center;
+      padding: 5%;
+      margin: 3%;
+      cursor: pointer;
+      flex: 0 1 auto; /* Allow buttons to shrink but not grow, keeping their intrinsic size */
+    }
+  }
+
+  button.change-status {
+    border-radius: 20%;
+    color: $text-color;
+  }
+
+  button.remove-task {
+    border-radius: 20%;
+    color: $danger-color;
+  }
+
+  @include breakpoint-small {
+    width: calc(50% - 2rem);
+    margin-right: 2rem;
+  }
+
+  @include breakpoint-large {
+    width: calc(25% - 2rem);
+  }
+}

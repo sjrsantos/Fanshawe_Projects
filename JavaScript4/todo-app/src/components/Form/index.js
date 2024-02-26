@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "./style.scss";
+import { MdOutlineAddTask } from "react-icons/md";
 
 export default function Form({ onAddTask }) {
   const [title, setTitle] = useState("");
@@ -53,28 +55,24 @@ export default function Form({ onAddTask }) {
   ];
 
   return (
-    <form onSubmit={handleNewTask}>
-      <hr />
-
+    <form className="form-component" onSubmit={handleNewTask}>
       {/* Conditionally display the success message */}
       {showSuccessMessage && (
-        <>
+        <div className="success-message">
           <p>Task added successfully!</p>
-          <hr />
-        </>
+        </div>
       )}
 
       {/* Conditionally display the error messages */}
       {errorMessages.length > 0 && (
-        <>
+        <div className="form-validate">
           <h3>Errors:</h3>
           <ul>
             {errorMessages.map((message) => (
               <li key={message}>{message}</li>
             ))}
           </ul>
-          <hr />
-        </>
+        </div>
       )}
 
       <h2>Add a New Task</h2>
@@ -100,13 +98,13 @@ export default function Form({ onAddTask }) {
             value={description}
             onChange={(event) => setDescription(event.target.value)}
             maxLength={100}
-            placeholder="Enter a description for your task"
+            placeholder="Enter a description"
           />
         </label>
       </div>
 
       {/* Status Field */}
-      <div>
+      <div className="status-field">
         <label>
           Status:
           <select
@@ -125,7 +123,9 @@ export default function Form({ onAddTask }) {
 
       {/* Add Task Button */}
       <div>
-        <button type="submit">Add Task</button>
+        <button type="submit" title="Add Task" className="add-task">
+          <MdOutlineAddTask /> <div>Add Task</div>
+        </button>
       </div>
     </form>
   );

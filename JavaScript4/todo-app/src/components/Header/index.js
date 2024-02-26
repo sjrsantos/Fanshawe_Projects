@@ -1,8 +1,14 @@
+import "./styles.scss";
+import { VscTasklist } from "react-icons/vsc";
+
 export default function Header() {
   return (
-    <header>
-      <h1>Todo App</h1>
-      <h2>by Silvio dos Santos Junior</h2>
+    <header className="main">
+      <h1 className="app-name">
+        <VscTasklist />
+        Todo App
+      </h1>
+      <h2 className="founder">by Silvio dos Santos Junior</h2>
     </header>
   );
 }

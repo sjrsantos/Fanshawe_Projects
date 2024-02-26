@@ -4,6 +4,7 @@ import Header from "./components/Header/index.js";
 import Tasks from "./components/Tasks/index";
 import uuid from "react-uuid";
 import React, { useState } from "react";
+import "./styles.scss";
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -58,13 +59,15 @@ function App() {
   return (
     <>
       <Header />
-      <Tasks
-        tasks={tasks}
-        onTaskComplete={changeStatus}
-        onTaskRemove={removeTask}
-        onClearTasks={clearTasks}
-      />
-      <Form onAddTask={addTask} />
+      <div className="content">
+        <Tasks
+          tasks={tasks}
+          onTaskComplete={changeStatus}
+          onTaskRemove={removeTask}
+          onClearTasks={clearTasks}
+        />
+        <Form onAddTask={addTask} />
+      </div>
     </>
   );
 }

@@ -1,0 +1,50 @@
+@import "../../styles/variables.scss";
+
+main.task-list {
+  margin: 2rem;
+  background-color: $background-color;
+  display: flex;
+  flex-wrap: wrap;
+
+  .task-list-title {
+    font-family: $title-font;
+    font-size: 2rem;
+    color: $primary-color;
+    margin-bottom: 2rem;
+    justify-content: center;
+  }
+
+  .task-list-components {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .clear-tasks {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    font-size: 25px;
+    color: $danger-color;
+    border-radius: 20%;
+    background-color: $background-color;
+    width: 200px;
+    height: 50px;
+    align-items: center;
+  }
+
+  .clear-tasks:hover {
+    color: $primary-color;
+  }
+
+  .task-list-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding: 0 2rem;
+  }
+
+  @include breakpoint-small {
+    padding-right: 0;
+  }
+}
