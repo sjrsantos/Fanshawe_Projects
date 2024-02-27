@@ -1,6 +1,8 @@
 import { getCategory, getPostStatus } from "../../../includes/variables";
 import "./styles.scss";
 import { BiLike, BiDislike } from "react-icons/bi";
+import { useSelector, useDispatch } from "react-redux";
+import { likePost, dislikePost } from "../../../redux/postSlice";
 
 export default function Post({
   id,
@@ -12,18 +14,24 @@ export default function Post({
   picture,
   likes,
   dislikes,
-  onPostLike,
-  onPostDislike,
 }) {
+  const { allowLikes, allowDislikes } = useSelector((state) => state.settings);
+  const dispatch = useDispatch();
+
   const handlelikesClick = () => {
-    onPostLike(id);
+    dispatch(likePost(id));
   };
 
   const handleDislikesClick = () => {
-    onPostDislike(id);
+    dispatch(dislikePost(id));
   };
 
   const promoteStyle = promote ? "promote-yes" : "promote-no";
+
+  let rateClassName = "rate";
+  if (!allowLikes || !allowDislikes) {
+    rateClassName += " rate-single-button";
+  }
 
   return (
     <div className="post-item">
@@ -46,18 +54,28 @@ export default function Post({
         </div>
       </div>
 
-      <div className="rate">
-        <button title="I like this" className="like" onClick={handlelikesClick}>
-          <BiLike /> {likes}
-        </button>
-        <button
-          title="I dislike this"
-          className="dislike"
-          onClick={handleDislikesClick}
-        >
-          <BiDislike /> {dislikes}
-        </button>
-      </div>
+      {(allowLikes || allowDislikes) && (
+        <div className={rateClassName}>
+          {allowLikes && (
+            <button
+              title="I like this"
+              className="like"
+              onClick={handlelikesClick}
+            >
+              <BiLike /> {likes}
+            </button>
+          )}
+          {allowDislikes && (
+            <button
+              title="I dislike this"
+              className="dislike"
+              onClick={handleDislikesClick}
+            >
+              <BiDislike /> {dislikes}
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }

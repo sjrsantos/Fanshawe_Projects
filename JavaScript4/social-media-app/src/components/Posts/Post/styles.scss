@@ -2,7 +2,7 @@
 
 .post-item {
   border: solid 1px $border-color;
-  background-color: $background-color;
+  background-color: #fff;
   padding: 1rem;
   margin-bottom: 2rem;
   width: 100%;
@@ -98,6 +98,30 @@
 
         svg {
           color: $danger-color;
+        }
+      }
+    }
+  }
+
+  .rate-single-button {
+    button {
+      &.dislike {
+        border-radius: 20px;
+        border: solid 1px $danger-color;
+        color: $danger-color;
+
+        svg {
+          color: $danger-color;
+        }
+      }
+
+      &.like {
+        border-radius: 20px;
+        border: solid 1px $success-color;
+        color: $success-color;
+
+        svg {
+          color: $success-color;
         }
       }
     }

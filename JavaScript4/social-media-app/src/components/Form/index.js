@@ -1,8 +1,10 @@
 import React, { useRef, useState } from "react";
 import { categories, statuses } from "../../includes/variables";
 import "./style.scss";
+import { useDispatch } from "react-redux";
+import { addPost } from "../../redux/postSlice";
 
-export default function Form({ onAddPost }) {
+export default function Form() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("");
@@ -12,6 +14,7 @@ export default function Form({ onAddPost }) {
   const [errorMessages, setErrorMessages] = useState([]); // ["The title must be at least 5 characters long", "The content is required", "The category is required", "The status is required"
   const [showSuccessMessage, setShowSuccessMessage] = useState(false); // ["The title must be at least 5 characters long", "The content is required", "The category is required", "The status is required"
 
+  const dispatch = useDispatch();
   const inputFile = useRef();
 
   const handleFormSubmit = (event) => {
@@ -42,7 +45,9 @@ export default function Form({ onAddPost }) {
 
     if (validate.length === 0) {
       // Valid data
-      onAddPost(title, content, category, promote, status, picture);
+
+      const data = { title, content, category, promote, status, picture };
+      dispatch(addPost(data));
 
       // Display success message
       setShowSuccessMessage(true);
