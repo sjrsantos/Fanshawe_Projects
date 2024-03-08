@@ -57,7 +57,7 @@ export default () => {
     return acc;
   }, {});
 
-  // Add RectangleRB, circleRb1, and all circle entities to the game world
+  // Add RectangleRB, and all circle entities to the game world
   return {
     physics: { engine, world },
     RectangleRB: rectangleRB,
