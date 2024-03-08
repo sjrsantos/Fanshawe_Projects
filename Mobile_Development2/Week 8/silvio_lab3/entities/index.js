@@ -4,59 +4,63 @@ import CircleRB from "../components/CircleRB";
 import RectangleRB from "../components/RectangleRB";
 import { Dimensions } from "react-native";
 
-export default (gameWorld) => {
-  let engine = Matter.Engine.create();
+export default () => {
+  let engine = Matter.Engine.create({ enableSleeping: false });
   let world = engine.world;
 
   // Set gravity
-  Matter.World.gravity = { x: 0, y: 0.5 };
+  engine.world.gravity.y = 0.5;
 
-  // Create RectangleRB
+  // Create a single RectangleRB
   const rectangleRB = RectangleRB(
     world,
     "red",
-    {
-      x: Dimensions.get("window").width / 2,
-      y: 50, // Position at the top of the screen
-    },
-    { width: 100, height: 50 }
+    { x: Dimensions.get("window").width / 2, y: 50 },
+    { width: 50, height: 50 }
   );
 
-  // Create CircleRB instances
+  // Create multiple CircleRB instances
   const circleRBs = [];
   const numCircles = 10;
   const circleSpacing = Dimensions.get("window").width / (numCircles + 1);
   for (let i = 0; i < numCircles; i++) {
-    const isStatic = i === 0 || i === numCircles - 1; // First and last CircleRB are static
+    const isStatic = i === 0 || i === numCircles - 1; // Make the first and last circles static
     const circleX = (i + 1) * circleSpacing;
     const circleY = Dimensions.get("window").height - 300;
 
-    const circleRB = CircleRB(
+    let circleRB = CircleRB(
       world,
-      { x: circleX, y: circleY }, // Pass position object instead of just coordinates
+      "blue",
+      { x: circleX, y: circleY },
       20,
       isStatic
     );
     circleRBs.push(circleRB);
   }
 
-  // Add CircleRB instances to the entities
-  // Create constraints between adjacent circles to form a chain
-  const constraints = [];
+  // Create constraints (links) between adjacent circles to form a bridge
   for (let i = 0; i < numCircles - 1; i++) {
-    const constraint = Matter.Constraint.create({
-      bodyA: circleRBs[i].body,
-      bodyB: circleRBs[i + 1].body,
-      length: circleSpacing, // Adjust the length based on your requirements
-      stiffness: 0.1, // Adjust stiffness as needed
-    });
-    constraints.push(constraint);
+    Matter.World.add(
+      world,
+      Matter.Constraint.create({
+        bodyA: circleRBs[i].body,
+        bodyB: circleRBs[i + 1].body,
+        length: circleSpacing, // Adjust length to ensure circles are closer together
+        stiffness: 0.4, // Adjust stiffness to make the bridge more rigid
+      })
+    );
   }
-  Matter.World.add(world, constraints);
 
+  // Convert the circleRBs array into an object with unique keys for GameEngine
+  const circleEntities = circleRBs.reduce((acc, circle, index) => {
+    acc[`CircleRB_${index}`] = circle; // Use a unique key for each circle
+    return acc;
+  }, {});
+
+  // Add RectangleRB, circleRb1, and all circle entities to the game world
   return {
     physics: { engine, world },
     RectangleRB: rectangleRB,
-    CircleRBs: circleRBs,
+    ...circleEntities, // Spread the circle entities into the final object
   };
 };

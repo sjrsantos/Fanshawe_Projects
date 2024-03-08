@@ -18,13 +18,13 @@ const CircleRB = (props) => {
         width: width,
         height: width,
         borderRadius: props.radius,
-        backgroundColor: "red", // Set background color as red
+        backgroundColor: props.color,
       }}
     />
   );
 };
 
-export default (world, pos, radius, isStatic) => {
+export default (world, color, pos, radius, isStatic) => {
   const circleRB = Matter.Bodies.circle(pos.x, pos.y, radius, {
     isStatic: !!isStatic,
   });
@@ -33,6 +33,7 @@ export default (world, pos, radius, isStatic) => {
   return {
     body: circleRB,
     radius,
-    renderer: <CircleRB body={circleRB} />, // Pass the circle body to the renderer
+    color, // Include the color here
+    renderer: <CircleRB body={circleRB} color={color} />, // Pass color prop to the renderer
   };
 };
