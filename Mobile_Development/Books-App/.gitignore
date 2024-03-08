@@ -3,6 +3,12 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+
+Fanshawe_Projects/Mobile_Development/Books-App/node_modules/@ampproject/remapping
+
+# add @babel
+Fanshawe_Projects/Mobile_Development/Books-App/node_modules/@babel
+
 # IDE - Visual Studio Code
 .vscode/
 *.code-workspace
