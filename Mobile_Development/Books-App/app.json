@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "Books-App",
+    "slug": "chapterverse",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.sjrsantos.chapterverse",
+      "runtimeVersion": "1.0.0"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ec13cec8-19d2-488d-be7e-2869e449a493"
+      }
+    },
+    "owner": "sjrsantos",
+    "updates": {
+      "url": "https://u.expo.dev/ec13cec8-19d2-488d-be7e-2869e449a493"
+    }
+  }
+}
