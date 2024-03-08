@@ -1,14 +1,7 @@
 @import "../../styles/variables.scss";
+@import "../../styles/index.scss";
 
 .settings-component {
-  padding: 1rem;
-
-  h1 {
-    color: $primary-color;
-    margin: 0;
-    padding: 0;
-  }
-
   .field {
     padding-top: 0.5rem;
 
