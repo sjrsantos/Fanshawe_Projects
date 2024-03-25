@@ -17,28 +17,53 @@ import NotFoundPage from "./pages/NotFoundPage/index.js";
 import { Routes, Route } from "react-router-dom";
 import AboutUsIntroductionPage from "./pages/AboutUsPage/Introduction.js";
 
+import { useEffect, useState } from "react";
+
+import * as database from "./database/index.js";
+
+import { setPosts } from "./redux/postSlice.js";
+import { useDispatch } from "react-redux";
+import Loading from "./components/Loading/index.js";
+
 export default function App() {
+  const dispatch = useDispatch();
+  const [isloading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // IIFE - Immediately Invoked Function Expression
+    (async () => {
+      // Load the database
+      const data = await database.load();
+      dispatch(setPosts(data));
+      setIsLoading(false);
+    })();
+  }, [dispatch]);
+
   return (
     <>
       <Header />
 
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+      {isloading ? (
+        <Loading />
+      ) : (
+        <Routes>
+          <Route path="/" element={<HomePage />} />
 
-        <Route path="/posts" element={<PostListPage />} />
-        <Route path="/posts/add" element={<PostFormPage />} />
-        <Route path="/posts/:id" element={<PostItemPage />} />
+          <Route path="/posts" element={<PostListPage />} />
+          <Route path="/posts/add" element={<PostFormPage />} />
+          <Route path="/posts/:id" element={<PostItemPage />} />
 
-        <Route path="/preferences" element={<PreferencesPage />} />
+          <Route path="/preferences" element={<PreferencesPage />} />
 
-        <Route path="/about-us" element={<AboutUsPage />}>
-          <Route path="" element={<AboutUsIntroductionPage />} />
-          <Route path="mission" element={<AboutUsMissionPage />} />
-          <Route path="privacy" element={<AboutUsPrivacyPage />} />
-        </Route>
+          <Route path="/about-us" element={<AboutUsPage />}>
+            <Route path="" element={<AboutUsIntroductionPage />} />
+            <Route path="mission" element={<AboutUsMissionPage />} />
+            <Route path="privacy" element={<AboutUsPrivacyPage />} />
+          </Route>
 
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      )}
 
       <Footer />
     </>

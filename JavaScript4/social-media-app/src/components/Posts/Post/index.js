@@ -2,8 +2,9 @@ import { getCategory, getPostStatus } from "../../../includes/variables";
 import "./styles.scss";
 import { BiLike, BiDislike } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
-import { likePost, dislikePost } from "../../../redux/postSlice";
+import { likePost, dislikePost, removePost } from "../../../redux/postSlice";
 import { Link } from "react-router-dom";
+import * as database from "../../../database";
 
 export default function Post({
   id,
@@ -19,14 +20,51 @@ export default function Post({
   const { allowLikes, allowDislikes } = useSelector((state) => state.settings);
   const dispatch = useDispatch();
 
-  const handlelikesClick = (event) => {
+  const handlelikesClick = async (event) => {
     event.preventDefault();
     dispatch(likePost(id));
+
+    const data = { likes: likes + 1 };
+    const updated = await database.update(id, data);
+
+    console.log("Update:", updated);
+
+    if (!updated) {
+      alert("There was an error updating the post");
+      // TODO: Improve error handling
+      // TODO: Create a Redux action to remove one like
+    }
   };
 
-  const handleDislikesClick = (event) => {
+  const handleDislikesClick = async (event) => {
     event.preventDefault();
     dispatch(dislikePost(id));
+
+    const data = { dislikes: dislikes + 1 };
+    const updated = await database.update(id, data);
+
+    console.log("Update:", updated);
+
+    if (!updated) {
+      alert("There was an error updating the post");
+      // TODO: Improve error handling
+      // TODO: Create a Redux action to remove one dislike
+    }
+  };
+
+  const handleRemoveClick = async (event) => {
+    event.preventDefault();
+
+    // Remove from Redux store
+    dispatch(removePost(id));
+
+    // Remove from Database
+    const removed = await database.remove(id);
+
+    if (!removed) {
+      alert("Post not removed");
+      // TODO: Improve error handling
+    }
   };
 
   const promoteStyle = promote ? "promote-yes" : "promote-no";
@@ -79,6 +117,10 @@ export default function Post({
           )}
         </div>
       )}
+
+      <button className="remove" onClick={handleRemoveClick}>
+        Remove
+      </button>
     </Link>
   );
 }

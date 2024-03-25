@@ -3,6 +3,7 @@ import { categories, statuses } from "../../includes/variables";
 import "./style.scss";
 import { useDispatch } from "react-redux";
 import { addPost } from "../../redux/postSlice";
+import * as database from "../../database";
 
 export default function Form() {
   const [title, setTitle] = useState("");
@@ -12,12 +13,13 @@ export default function Form() {
   const [status, setStatus] = useState("");
   const [picture, setPicture] = useState("");
   const [errorMessages, setErrorMessages] = useState([]); // ["The title must be at least 5 characters long", "The content is required", "The category is required", "The status is required"
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // ["The title must be at least 5 characters long", "The content is required", "The category is required", "The status is required"
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   const dispatch = useDispatch();
   const inputFile = useRef();
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     // Hide the success message
@@ -44,22 +46,51 @@ export default function Form() {
     setErrorMessages(validate);
 
     if (validate.length === 0) {
-      // Valid data
+      setIsSaving(true);
 
-      const data = { title, content, category, promote, status, picture };
-      dispatch(addPost(data));
+      // Upload the picture
+      const file = inputFile.current.files[0];
+      const pictureUrl = await database.uploadPicture(file);
+      if (pictureUrl) {
+        console.log("pictureUrl", pictureUrl);
 
-      // Display success message
-      setShowSuccessMessage(true);
+        // Valid data
+        const data = {
+          title,
+          content,
+          category,
+          promote,
+          status,
+          picture: pictureUrl,
+          likes: 0,
+          dislikes: 0,
+        };
+        const savedId = await database.save(data);
 
-      // Clear the form
-      setTitle("");
-      setContent("");
-      setCategory("");
-      setPromote(true);
-      setStatus("");
-      setPicture("");
-      inputFile.current.value = "";
+        if (savedId) {
+          data.id = savedId;
+          dispatch(addPost(data));
+
+          // Display success message
+          setShowSuccessMessage(true);
+
+          // Clear the form
+          setTitle("");
+          setContent("");
+          setCategory("");
+          setPromote(true);
+          setStatus("");
+          setPicture("");
+          if (inputFile.current) {
+            inputFile.current.value = "";
+          }
+        } else {
+          setErrorMessages(["Failed to save data"]);
+        }
+      } else {
+        setErrorMessages(["Failed to upload picture"]);
+      }
+      setIsSaving(false);
     }
   };
 
@@ -71,6 +102,10 @@ export default function Form() {
       setPicture(eventLoad.target.result);
     };
   };
+
+  if (isSaving) {
+    return <div>Saving...</div>;
+  }
 
   return (
     <form className="form-component" onSubmit={handleFormSubmit}>

@@ -1,6 +1,6 @@
 import PageContainer from "../../components/PageContainer";
 import Posts from "../../components/Posts";
-import Form from "../../components/Form";
+
 import "./styles.scss";
 import { useNavigate } from "react-router-dom";
 

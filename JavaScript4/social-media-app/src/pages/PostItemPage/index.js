@@ -1,14 +1,28 @@
 import PageContainer from "../../components/PageContainer";
 import { useParams, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import * as database from "../../database";
 import NotFoundPage from "../NotFoundPage";
 import "./stylex.scss";
+import { useEffect, useState } from "react";
+import Loading from "../../components/Loading";
 
 export default function PostItemPage() {
   const params = useParams();
-  const post = useSelector((state) =>
-    state.post.posts.find((post) => post.id === params.id)
-  );
+  const [post, setPosts] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Load post from the database
+  useEffect(() => {
+    (async () => {
+      const loadedPost = await database.loadById(params.id);
+      setPosts(loadedPost);
+      setIsLoading(false);
+    })();
+  }, [params.id]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   if (!post) {
     return <NotFoundPage />;
