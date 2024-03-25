@@ -11,6 +11,7 @@
   .info {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
 
     div {
       font-size: 0.8rem;
@@ -27,6 +28,7 @@
       font-size: 28px;
       font-family: $title-font;
       color: $primary-color;
+      margin-bottom: 1rem;
     }
 
     .task-description {
@@ -50,6 +52,7 @@
     .task-id {
       font-family: $body-font;
       display: flex;
+      margin-top: 0.5rem;
     }
 
     .task-description,

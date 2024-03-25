@@ -2,7 +2,7 @@ import "./App.css";
 import Form from "./components/Form";
 import Header from "./components/Header/index.js";
 import Tasks from "./components/Tasks/index";
-import uuid from "react-uuid";
+
 import React, { useState } from "react";
 import "./styles.scss";
 import { Routes, Route } from "react-router-dom";
@@ -15,54 +15,40 @@ import AddingTasksPage from "./pages/HelpPage/AddingTasks";
 import RemovingTasksPage from "./pages/HelpPage/RemovingTasks";
 import ChangingStatusPage from "./pages/HelpPage/ChangingTasks";
 
+import * as database from "./database/index.js";
+
 function App() {
-  const [tasks, setTasks] = useState([
-    {
-      id: uuid(),
-      title: "Walk the dog",
-      description: "Take the dog for a walk around the block",
-      status: "Open",
-    },
-    {
-      id: uuid(),
-      title: "Wash the car",
-      description: "Wash the car in the driveway",
-      status: "Open",
-    },
-    {
-      id: uuid(),
-      title: "Finish the lab",
-      description: "Finish the lab for JavaScript 4",
-      status: "Open",
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
+
+  database.load().then((data) => {
+    setTasks(data);
+  });
+
   function changeStatus(id) {
-    setTasks((tasks) =>
-      tasks.map((task) =>
-        task.id === id
-          ? { ...task, status: task.status === "Open" ? "Completed" : "Open" }
-          : task
-      )
-    );
+    database.update(id, {
+      status:
+        tasks.find((task) => task.id === id).status === "Open"
+          ? "Completed"
+          : "Open",
+    });
   }
 
   function removeTask(id) {
-    setTasks(tasks.filter((task) => task.id !== id));
+    database.remove(id);
   }
 
   function addTask(title, description, status) {
     const newTask = {
-      id: uuid(),
       title,
       description,
       status,
     };
 
-    setTasks((prevTasks) => [...prevTasks, newTask]);
+    database.save(newTask);
   }
 
   function clearTasks() {
-    setTasks([]);
+    tasks.forEach((task) => database.remove(task.id));
   }
 
   return (
